@@ -1,26 +1,29 @@
-<div class="card mb-1" >        
-    <div class="card-header btn-light title">
-        {{movie.title}}
-    </div>
-    <div class="card-body">
-        <div class="d-flex flex-row">
-            <div class="mr-2">
-                <img [src]="movie.poster" alt="poster" style="max-height: 120px;">
-            </div>
-            <div class="d-flex flex-column">
-                <div>
-                    <label>Language:</label>
-                    <label class="language">{{movie.language}}</label>
+<a [routerLink]="[movie.movieId]">
+    <div class="card mb-1" >        
+        <div class="card-header btn-light title">
+            {{movie.title}}
+        </div>
+        <div class="card-body">
+            <div class="d-flex flex-row">
+                <div class="mr-2">
+                    <img [src]="movie.poster" alt="poster" style="max-height: 120px;">
                 </div>
-                <div>
-                    <label>Location:</label>
-                    <label class="location">{{movie.location}}</label>
-                </div>
-                <div>
-                    <label>Imdb Rating:</label>
-                    <label class="imdbRating">{{movie.imdbRating}}</label>
+                <div class="d-flex flex-column">
+                    <div>
+                        <label>Language:</label>
+                        <label class="language">{{movie.language}}</label>
+                    </div>
+                    <div>
+                        <label>Location:</label>
+                        <label class="location">{{movie.location}}</label>
+                    </div>
+                    <div>
+                        <label>Imdb Rating:</label>
+                        <label class="imdbRating">{{movie.imdbRating}}</label>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</a>
+
