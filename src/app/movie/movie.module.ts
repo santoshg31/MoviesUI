@@ -3,14 +3,17 @@ import { CommonModule } from '@angular/common';
 import { MovieRoutingModule } from './movie-routing.module';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieOverviewComponent } from './movie-overview/movie-overview.component';
+import { MovieFilterComponent } from './movie-filter/movie-filter.component';
+import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [MoviesComponent, MovieOverviewComponent],
+  declarations: [MoviesComponent, MovieOverviewComponent, MovieFilterComponent],
   imports: [
     CommonModule,
-    MovieRoutingModule
+    MovieRoutingModule,
+    FormsModule
   ]
 })
 export class MovieModule { }
