@@ -26,6 +26,7 @@ describe('MovieFilterComponent', () => {
     movieFilter={
       searchTitle:'harry',
       language:'ENGLISH',
+      location:'PUNE',
       sortDirection:'asc'
     };
     component.movieFilter = movieFilter;
@@ -59,6 +60,14 @@ describe('MovieFilterComponent', () => {
     });
     const languageEle = debugEle.query(By.css('#language'));
     languageEle.triggerEventHandler('change','ENGLISH');
+    fixture.detectChanges();
+  });
+  it('location selection change should emit movieFilterChanged event with movieFilter object',()=>{      
+    component.movieFilterChanged.subscribe((movieFilterEmittedObject: MovieFilter) =>{
+      expect(movieFilterEmittedObject.location).toEqual('PUNE');
+    });
+    const locationEle = debugEle.query(By.css('#location'));
+    locationEle.triggerEventHandler('change','PUNE');
     fixture.detectChanges();
   });
   it('Sort selection change should emit movieFilterChanged event with movieFilter object',()=>{      

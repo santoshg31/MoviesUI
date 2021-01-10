@@ -12,9 +12,11 @@ export class MovieFilterComponent implements OnInit {
   movieFilter:MovieFilter ={
     searchTitle:'',
     language:'',
+    location:'',
     sortDirection:''
   };
-  movieLanguages:string[] =  ["ENGLISH","HINDI"];  //hard coding for simplicity. TODO get it from the api 
+  movieLanguages:string[] =  ["English","Hindi"];  //hard coding for simplicity.
+  locations:string[] = ["Delhi","Pune","Bangalore","Chennai"]
   constructor() { }
 
   ngOnInit(): void {

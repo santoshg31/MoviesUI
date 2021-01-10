@@ -130,6 +130,7 @@ describe('MoviesComponent', () => {
       movieFilter = {
         searchTitle : 'Deathly',
         language:'',
+        location:'',
         sortDirection:''
       }
       component.ngOnInit();
@@ -140,16 +141,29 @@ describe('MoviesComponent', () => {
       movieFilter = {
         searchTitle : '',
         language:'ENGLISH',
+        location:'',
         sortDirection:''
       }      
       component.ngOnInit();
       filterComponentEle.triggerEventHandler('movieFilterChanged',movieFilter);
       expect(component.filteredMovies.length).toEqual(2);
     });
+    it('should filter the movies by location',()=>{
+      movieFilter = {
+        searchTitle : '',
+        language:'',
+        location:'PUNE',
+        sortDirection:''
+      }      
+      component.ngOnInit();
+      filterComponentEle.triggerEventHandler('movieFilterChanged',movieFilter);
+      expect(component.filteredMovies.length).toEqual(1);
+    });
     it('should sort the movies by title',()=>{
       movieFilter = {
         searchTitle : '',
         language:'',
+        location:'',
         sortDirection:'desc'
       }
       component.ngOnInit();
@@ -161,6 +175,7 @@ describe('MoviesComponent', () => {
       movieFilter = {
         searchTitle : 'test No Movies',
         language:'',
+        location:'',
         sortDirection:''
       }
       component.ngOnInit();

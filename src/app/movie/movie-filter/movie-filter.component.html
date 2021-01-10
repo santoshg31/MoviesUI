@@ -1,16 +1,23 @@
 
 <div class="row col-md-12">
-    <div class="col-md-4">
+    <div class="col-md-3 d-flex flex-row col-md-3 align-items-center">
         <input type="text" class="form-control searchTitle" name="searchTitle" placeholder="Search by Title" [(ngModel)]="movieFilter.searchTitle" (input) ="onFilterChange()" />
     </div>
-    <div class="d-flex flex-row col-md-4">
-        <label>Filter by language:</label>
+    <div class="d-flex flex-row col-md-3 align-items-center">
+        <label class="mr-1">Language:</label>
         <select id="language" name="language" class="form-control"  [(ngModel)]="movieFilter.language" (change)="onFilterChange()">
-            <option value="">All</option>
+            <option value="">All Languages</option>
             <option *ngFor="let language of movieLanguages" [value]="language" >{{language}}</option>
         </select>
     </div>
-    <div class="d-flex flex-row col-md-4">
+    <div class="d-flex flex-row col-md-3 align-items-center">
+        <label class="mr-1">Location:</label>
+        <select id="location" name="location" class="form-control"  [(ngModel)]="movieFilter.location" (change)="onFilterChange()">
+            <option value="">All Locations</option>
+            <option *ngFor="let location of locations" [value]="location" >{{location}}</option>
+        </select>
+    </div>
+    <div class="d-flex flex-row col-md-3 align-items-center">
         <label>Sort by Title:</label>
         <select id="sortByTitle" name="sortByTitle" class="form-control"  [(ngModel)]="movieFilter.sortDirection" (change)="onFilterChange()">
             <option value="">--Select--</option>
