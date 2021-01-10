@@ -155,6 +155,20 @@ describe('MoviesComponent', () => {
       component.ngOnInit();
       filterComponentEle.triggerEventHandler('movieFilterChanged',movieFilter);  
       expect(component.filteredMovies[0].title).toEqual('The Shawshank Redemption');
+    });
+
+    it('should show no movies message if no movies match filter',()=>{
+      movieFilter = {
+        searchTitle : 'test No Movies',
+        language:'',
+        sortDirection:''
+      }
+      component.ngOnInit();
+      filterComponentEle.triggerEventHandler('movieFilterChanged',movieFilter);
+      fixture.detectChanges();  
+      const noMoviesEle = debugEle.query(By.css('.no-movies-found')).nativeElement;
+      expect(noMoviesEle).not.toBeUndefined;
+      expect(noMoviesEle.textContent).toEqual(component.noMoviesMessage);
     })
   });
 

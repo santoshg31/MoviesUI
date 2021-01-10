@@ -14,6 +14,7 @@ export class MoviesComponent implements OnInit {
   movies:Movie[] = [];
   filteredMovies:Movie[]=[];
   errorMessage:string = '';
+  noMoviesMessage:string = 'No movies match filter criteria.';
   ngOnInit(): void {
     this._moviesService.getMovies().subscribe(
       movies => {
