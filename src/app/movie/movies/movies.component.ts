@@ -27,8 +27,9 @@ export class MoviesComponent implements OnInit {
   };
 
   onMovieFilterChange(movieFilter:MovieFilter){
-    this.filteredMovies = this.movies.filter(movie=> (movie.title.toLowerCase().indexOf(movieFilter.searchTitle.toLowerCase()) !== -1)    
-                                            );
+    this.filteredMovies = this.movies.filter(movie=> (movie.title.toLowerCase().indexOf(movieFilter.searchTitle.toLowerCase()) !== -1) &&
+                                                      (movieFilter.language ===''|| movieFilter.language.toLowerCase() === movie.language.toLowerCase())
+                                             );
   }
 
 }

@@ -95,12 +95,8 @@ describe('MoviesComponent', () => {
   describe('onMovieFilterChange',()=>{
     let movieFilter:MovieFilter;
     let filterComponentEle: { triggerEventHandler: any; };
-    beforeEach(()=>{
-      movieFilter = {
-        searchTitle : 'Deathly',
-        language:'ENGLISH',
-        sortDirection:'asc'
-      }
+    beforeEach(()=>{      
+      spyOn(component._moviesService,"getMovies").and.returnValue(of(movies));
       filterComponentEle = debugEle.query(By.css('app-movie-filter'));
     });
 
@@ -111,7 +107,21 @@ describe('MoviesComponent', () => {
     });
 
     it('should filter the movies by searchTitle',()=>{
-      spyOn(component._moviesService,"getMovies").and.returnValue(of(movies));
+      movieFilter = {
+        searchTitle : 'Deathly',
+        language:'',
+        sortDirection:''
+      }
+      component.ngOnInit();
+      filterComponentEle.triggerEventHandler('movieFilterChanged',movieFilter);
+      expect(component.filteredMovies.length).toEqual(1);
+    });
+    it('should filter the movies by language',()=>{
+      movieFilter = {
+        searchTitle : '',
+        language:'ENGLISH',
+        sortDirection:''
+      }      
       component.ngOnInit();
       filterComponentEle.triggerEventHandler('movieFilterChanged',movieFilter);
       expect(component.filteredMovies.length).toEqual(1);
