@@ -1,1 +1,38 @@
-<p>movie-details works!</p>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header btn-light d-flex flex-row justify-content-between">
+            <div class="title">
+                {{movieDetails?.title}}
+            </div>
+            <button class="btn btn-dark" (click)="onBackButtonClick()">Back</button> 
+        </div>
+        <div class="card-body">
+            <div class="d-flex flex-row justify-content">
+                <label><b>Poster:</b></label>
+                <img [src]="movieDetails?.poster" alt="unavailable" />
+            </div>
+            <div class="d-flex flex-row justify-content">
+                <label><b>Plot:</b></label>
+                <label>{{movieDetails?.plot}}</label>
+            </div>
+            <div class="d-flex flex-row justify-content">
+                <label><b>Stills:</b></label>
+                <div class="d-flex flex-row justify-content-between flex-wrap">
+                    <img [src]="still" alt="unavailable" class="still-image" *ngFor="let still of movieDetails?.stills" />
+                </div>
+            </div>
+            <div class="d-flex flex-row justify-content">
+                <label><b>Sound effects:</b></label>
+                <label>{{soundEffects}}</label>
+            </div>
+            <div class="d-flex flex-row justify-content">
+                <label><b>ImdbRating:</b></label>
+                <label>{{movieDetails?.imdbRating}}</label>
+            </div>
+            <div class="d-flex flex-row justify-content">
+                <label><b>Listing type:</b></label>
+                <label>{{movieDetails?.listingType}}</label>
+            </div>
+        </div> 
+    </div>
+</div>

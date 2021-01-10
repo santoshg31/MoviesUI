@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Movie } from 'src/app/core/interfaces/movie';
+import { MoviesService } from 'src/app/core/services/movies.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-movie-details',
@@ -6,10 +10,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./movie-details.component.scss']
 })
 export class MovieDetailsComponent implements OnInit {
-
-  constructor() { }
+  movieDetails: Movie | undefined;
+  soundEffects:string| undefined;
+  constructor(public _moviesService:MoviesService,public _activateRoute: ActivatedRoute,private _location:Location) { }
 
   ngOnInit(): void {
+    let movieId = this._activateRoute.snapshot.params['movieId'];
+    this._moviesService.getMovies().subscribe(movies =>{    //TODO get the particular movie from REST API
+      this.movieDetails = movies.find(movie => movie.movieId == movieId);
+      this.soundEffects = this.movieDetails?.soundEffects.join();
+    });
+  }
+
+  onBackButtonClick(){
+    this._location.back();
   }
 
 }
