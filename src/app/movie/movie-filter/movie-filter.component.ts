@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MovieFilter } from 'src/app/core/interfaces/movieFilter';
 
 @Component({
@@ -7,6 +7,8 @@ import { MovieFilter } from 'src/app/core/interfaces/movieFilter';
   styleUrls: ['./movie-filter.component.scss']
 })
 export class MovieFilterComponent implements OnInit {
+  @Output()
+  movieFilterChanged: EventEmitter<MovieFilter> = new EventEmitter<MovieFilter>(); 
   movieFilter:MovieFilter ={
     searchTitle:'',
     language:'',
@@ -16,6 +18,10 @@ export class MovieFilterComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onFilterChange(){
+    this.movieFilterChanged.emit(this.movieFilter);
   }
 
 }
