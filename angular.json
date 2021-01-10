@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "MoviesUI"
+  "defaultProject": "MoviesUI",
+  "cli": {
+    "analytics": false
+  }
 }
