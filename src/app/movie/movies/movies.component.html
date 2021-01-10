@@ -3,9 +3,9 @@
         <h3><span class="col-md-12">Movies</span></h3>
         <hr />
     </div>
-    <app-movie-filter></app-movie-filter>
+    <app-movie-filter (movieFilterChanged)="onMovieFilterChange($event)"></app-movie-filter>
     <div id= "error-message" class="text-danger mb-1" *ngIf="errorMessage">{{errorMessage}}</div>
-    <div *ngFor="let movie of movies">
+    <div *ngFor="let movie of filteredMovies">
         <app-movie-overview [movie]="movie"></app-movie-overview>
     </div>
 </div>

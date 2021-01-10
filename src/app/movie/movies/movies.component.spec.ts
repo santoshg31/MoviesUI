@@ -4,6 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of, throwError } from 'rxjs';
 import { Movie } from 'src/app/core/interfaces/movie';
+import { MovieFilter } from 'src/app/core/interfaces/movieFilter';
 
 import { MoviesComponent } from './movies.component';
 
@@ -89,6 +90,32 @@ describe('MoviesComponent', () => {
     fixture.detectChanges();
     const errorEle = debugEle.query(By.css('#error-message')).nativeElement;
     expect(errorEle.textContent).toContain(errorMessage);
+  });
+
+  describe('onMovieFilterChange',()=>{
+    let movieFilter:MovieFilter;
+    let filterComponentEle: { triggerEventHandler: any; };
+    beforeEach(()=>{
+      movieFilter = {
+        searchTitle : 'Deathly',
+        language:'ENGLISH',
+        sortDirection:'asc'
+      }
+      filterComponentEle = debugEle.query(By.css('app-movie-filter'));
+    });
+
+    it('should call onMovieFilterChange function when movieFilterChanged event is raised',()=>{
+      spyOn(component,'onMovieFilterChange');
+      filterComponentEle.triggerEventHandler('movieFilterChanged',movieFilter);
+      expect(component.onMovieFilterChange).toHaveBeenCalledWith(movieFilter);
+    });
+
+    it('should filter the movies by searchTitle',()=>{
+      spyOn(component._moviesService,"getMovies").and.returnValue(of(movies));
+      component.ngOnInit();
+      filterComponentEle.triggerEventHandler('movieFilterChanged',movieFilter);
+      expect(component.filteredMovies.length).toEqual(1);
+    });
   });
 
 });
