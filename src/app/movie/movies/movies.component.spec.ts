@@ -53,6 +53,26 @@ describe('MoviesComponent', () => {
       "title": "Harry Potter and the Deathly Hallows: Part 2",
       "imdbID": "tt1201607",
       "imdbRating": "8.1"
+    },
+    {
+      "movieId": 3,
+      "language": "ENGLISH",
+      "location": "DELHI",
+      "plot": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_QL50_.jpg",
+      "soundEffects": [
+        "RX6",
+        "SDDS"
+      ],
+      "stills": [
+        "https://m.media-amazon.com/images/M/MV5BNTYxOTYyMzE3NV5BMl5BanBnXkFtZTcwOTMxNDY3Mw@@._V1_UY99_CR24,0,99,99_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BNzAwOTk3MDg5MV5BMl5BanBnXkFtZTcwNjQxNDY3Mw@@._V1_UY99_CR29,0,99,99_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"
+      ],
+      "title": "The Shawshank Redemption",
+      "imdbID": "tt0111161",
+      "listingType": "NOW_SHOWING",
+      "imdbRating": "9.2"
     }
   ]
 
@@ -80,7 +100,7 @@ describe('MoviesComponent', () => {
     component.movies = [];  
     spyOn(component._moviesService,"getMovies").and.returnValue(of(movies));
     component.ngOnInit();
-    expect(component.movies.length).toEqual(2);
+    expect(component.movies.length).toEqual(3);
   });
 
   it('Should show error message if call the service fails',()=>{
@@ -124,8 +144,18 @@ describe('MoviesComponent', () => {
       }      
       component.ngOnInit();
       filterComponentEle.triggerEventHandler('movieFilterChanged',movieFilter);
-      expect(component.filteredMovies.length).toEqual(1);
+      expect(component.filteredMovies.length).toEqual(2);
     });
+    it('should sort the movies by title',()=>{
+      movieFilter = {
+        searchTitle : '',
+        language:'',
+        sortDirection:'desc'
+      }
+      component.ngOnInit();
+      filterComponentEle.triggerEventHandler('movieFilterChanged',movieFilter);  
+      expect(component.filteredMovies[0].title).toEqual('The Shawshank Redemption');
+    })
   });
 
 });

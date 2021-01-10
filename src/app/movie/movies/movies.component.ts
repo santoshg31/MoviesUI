@@ -30,6 +30,12 @@ export class MoviesComponent implements OnInit {
     this.filteredMovies = this.movies.filter(movie=> (movie.title.toLowerCase().indexOf(movieFilter.searchTitle.toLowerCase()) !== -1) &&
                                                       (movieFilter.language ===''|| movieFilter.language.toLowerCase() === movie.language.toLowerCase())
                                              );
+
+    if(movieFilter.sortDirection === 'asc'){
+      this.filteredMovies.sort((firstMovie,secondMovie) => firstMovie.title.localeCompare(secondMovie.title));
+    }else if(movieFilter.sortDirection === 'desc'){
+      this.filteredMovies.sort((firstMovie,secondMovie) => firstMovie.title.localeCompare(secondMovie.title)).reverse();
+    }                                         
   }
 
 }
