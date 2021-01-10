@@ -4,9 +4,7 @@
         <hr />
     </div>
     <div id= "error-message" class="text-danger mb-1" *ngIf="errorMessage">{{errorMessage}}</div>
-    <ul>
-        <li *ngFor="let movie of movies">
-            {{movie.title}}
-        </li>
-    </ul> 
+    <div *ngFor="let movie of movies">
+        <app-movie-overview [movie]="movie"></app-movie-overview>
+    </div>
 </div>
