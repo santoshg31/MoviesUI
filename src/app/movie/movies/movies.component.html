@@ -1,3 +1,12 @@
-<p>movies works!</p>
-<button class="btn btn-success">Test bootstrap</button>
-<i class="fas fa-user fa-lg"></i>
+<div class="container-fluid">
+    <div class="page-header">
+        <h3><span class="col-md-12">Movies</span></h3>
+        <hr />
+    </div>
+    <div id= "error-message" class="text-danger mb-1" *ngIf="errorMessage">{{errorMessage}}</div>
+    <ul>
+        <li *ngFor="let movie of movies">
+            {{movie.title}}
+        </li>
+    </ul> 
+</div>
