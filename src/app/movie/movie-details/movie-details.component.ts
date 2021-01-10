@@ -16,9 +16,9 @@ export class MovieDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     let movieId = this._activateRoute.snapshot.params['movieId'];
-    this._moviesService.getMovies().subscribe(movies =>{    //TODO get the particular movie from REST API
-      this.movieDetails = movies.find(movie => movie.movieId == movieId);
-      this.soundEffects = this.movieDetails?.soundEffects.join();
+    this._moviesService.getMovieById(movieId).subscribe(movieDetails =>{    
+      this.movieDetails = movieDetails;
+      this.soundEffects = this.movieDetails.soundEffects.join();
     });
   }
 
