@@ -102,6 +102,19 @@ describe('MoviesComponent', () => {
     component.ngOnInit();
     expect(component.movies.length).toEqual(3);
   });
+  it('ngOnit should call onMovieFilterChange if localstorage contains movieFilterCache object',()=>{
+    const movieFilter:MovieFilter={
+        searchTitle : 'Deathly',
+        language:'',
+        location:'',
+        sortDirection:''
+    }
+    localStorage.setItem('movieFilter',JSON.stringify(movieFilter)); 
+    spyOn(component._moviesService,"getMovies").and.returnValue(of(movies));
+    spyOn(component,'onMovieFilterChange');
+    component.ngOnInit();
+    expect(component.onMovieFilterChange).toHaveBeenCalledWith(movieFilter);
+  });
 
   it('Should show error message if call the service fails',()=>{
     const errorMessage= "Error from service";
@@ -186,5 +199,7 @@ describe('MoviesComponent', () => {
       expect(noMoviesEle.textContent).toEqual(component.noMoviesMessage);
     })
   });
-
+  afterEach(()=>{
+    localStorage.removeItem('movieFilter');
+  })
 });

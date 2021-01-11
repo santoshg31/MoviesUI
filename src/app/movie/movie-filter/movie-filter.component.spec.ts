@@ -45,7 +45,13 @@ describe('MovieFilterComponent', () => {
     component.onFilterChange();
     fixture.detectChanges();
   });
-
+  it('onFilterChange function should set movieFilterObject to localstorage',()=>{    
+    const movieFilterCache = localStorage.getItem('movieFilter');
+    expect(movieFilterCache).toBeFalsy();
+    component.onFilterChange();
+    const movieFilterCachedObject = JSON.parse(localStorage.getItem('movieFilter')) as MovieFilter;
+    expect(movieFilterCachedObject).toBeTruthy();    
+  });
   it('searchTitle input change should emit movieFilterChanged event with movieFilter object',()=>{      
     component.movieFilterChanged.subscribe((movieFilterEmittedObject: MovieFilter) =>{
       expect(movieFilterEmittedObject.searchTitle).toEqual('harry');
@@ -78,4 +84,7 @@ describe('MovieFilterComponent', () => {
     searchTitleEle.triggerEventHandler('change','asc');
     fixture.detectChanges();
   });
+  afterEach(()=>{
+    localStorage.removeItem('movieFilter');
+  })
 });

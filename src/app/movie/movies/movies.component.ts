@@ -20,11 +20,16 @@ export class MoviesComponent implements OnInit {
       movies => {
         this.movies = movies;
         this.filteredMovies = [...movies];
+        const movieFilterCache = JSON.parse(localStorage.getItem('movieFilter')) as MovieFilter;
+        if(movieFilterCache != null && movieFilterCache != undefined){
+          this.onMovieFilterChange(movieFilterCache);
+        }
       },
       error =>{
         this.errorMessage = error;
       }
-    )
+    );
+    
   };
 
   onMovieFilterChange(movieFilter:MovieFilter){

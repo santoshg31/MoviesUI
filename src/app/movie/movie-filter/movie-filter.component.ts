@@ -9,21 +9,29 @@ import { MovieFilter } from 'src/app/core/interfaces/movieFilter';
 export class MovieFilterComponent implements OnInit {
   @Output()
   movieFilterChanged: EventEmitter<MovieFilter> = new EventEmitter<MovieFilter>(); 
-  movieFilter:MovieFilter ={
-    searchTitle:'',
-    language:'',
-    location:'',
-    sortDirection:''
-  };
+  movieFilter!: MovieFilter;
   movieLanguages:string[] =  ["English","Hindi"];  //hard coding for simplicity.
   locations:string[] = ["Delhi","Pune","Bangalore","Chennai"]
   constructor() { }
 
   ngOnInit(): void {
+    const movieFilterCache = JSON.parse(localStorage.getItem('movieFilter')) as MovieFilter;
+    if(movieFilterCache == null || movieFilterCache == undefined){
+      this.movieFilter = {
+        searchTitle:'',
+        language:'',
+        location:'',
+        sortDirection:''
+      }      
+    }else{
+      this.movieFilter = {...movieFilterCache};
+    }
+    
   }
 
   onFilterChange(){
     this.movieFilterChanged.emit(this.movieFilter);
+    localStorage.setItem('movieFilter',JSON.stringify(this.movieFilter));
   }
 
 }
