@@ -1,7 +1,7 @@
 <a [routerLink]="[movie.movieId]">
     <div class="card mb-1" >        
         <div class="card-header btn-light title">
-            {{movie.title}}
+            <h5>{{movie.title}}</h5>
         </div>
         <div class="card-body">
             <div class="d-flex flex-row">
@@ -10,15 +10,15 @@
                 </div>
                 <div class="d-flex flex-column">
                     <div>
-                        <label>Language:</label>
+                        <label class="label">Language:</label>
                         <label class="language">{{movie.language}}</label>
                     </div>
                     <div>
-                        <label>Location:</label>
+                        <label class="label">Location:</label>
                         <label class="location">{{movie.location}}</label>
                     </div>
                     <div>
-                        <label>Imdb Rating:</label>
+                        <label class="label">Imdb Rating:</label>
                         <label class="imdbRating">{{movie.imdbRating}}</label>
                     </div>
                 </div>
