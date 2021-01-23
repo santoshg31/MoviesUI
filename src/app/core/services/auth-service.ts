@@ -17,9 +17,17 @@ export class AuthService {
           authority: environment.stsAuthority,
           client_id: environment.clientId,
           redirect_uri: `${environment.clientRoot}signin-callback`,
-          scope: 'openid profile projects-api',   //changing this to work accordingly when identity server changes and when I create my own with movies-api
+          scope: 'openid profile movies-api',   //changing this to work accordingly when identity server changes and when I create my own with movies-api Identity server
           response_type: 'code',
-          post_logout_redirect_uri: `${environment.clientRoot}signout-callback`          
+          //post_logout_redirect_uri: `${environment.clientRoot}signout-callback`,  
+          metadata: {
+          issuer: `${environment.stsAuthority}`,
+          authorization_endpoint: `${environment.stsAuthority}authorize?audience=movies-api`,  //audience parameter ensures Auth0 returns JWT access token otherwise which we will later analyze for claims
+          jwks_uri: `${environment.stsAuthority}.well-known/jwks.json`,
+          token_endpoint: `${environment.stsAuthority}oauth/token`,
+          userinfo_endpoint: `${environment.stsAuthority}userinfo`,
+          end_session_endpoint: `${environment.stsAuthority}v2/logout?client_id=${environment.clientId}&returnTo=${encodeURI(environment.clientRoot)}signout-callback`
+          }        
         };
         this._userManager = new UserManager(stsSettings);
     }
