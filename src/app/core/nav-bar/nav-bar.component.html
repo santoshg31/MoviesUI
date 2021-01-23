@@ -4,8 +4,18 @@
             <img src="assets/images/logo.jpg" alt="logo" />
         </a>
     </div>
-    <div>
-        <button *ngIf="!isLoggedIn" class="btn btn-dark" (click)="login()">Login</button>
-        <button *ngIf="isLoggedIn" class="btn btn-danger" (click)="logout()">Logout</button>
+    <div class="d-flex flex-row justify-content">        
+        <div routerLinkActive="active" *ngIf="isLoggedIn" class="m-2">
+            <a routerLink="/movies">Home</a>
+        </div>
+        <div routerLinkActive="active" *ngIf="isLoggedIn" class="m-2">
+            <a routerLink="movies/my-movies">MyMovies</a>
+        </div>
+        <div *ngIf="!isLoggedIn">
+            <button class="btn btn-dark" (click)="login()">Login</button>
+        </div>
+        <div *ngIf="isLoggedIn">
+            <button class="btn btn-danger" (click)="logout()">Logout</button>
+        </div> 
     </div>
 </div>

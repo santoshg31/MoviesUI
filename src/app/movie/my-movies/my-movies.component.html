@@ -1,0 +1,11 @@
+<div class="container-fluid">
+    <div class="page-header">
+        <h3><span class="col-md-12">My Movies</span></h3>
+        <hr />
+    </div>
+    <div class="no-movies-found" *ngIf="movies.length == 0">{{noMoviesMessage}}</div>
+    <div id= "error-message" class="text-danger mb-1" *ngIf="errorMessage">{{errorMessage}}</div>
+    <div *ngFor="let movie of movies" class="px-3">
+        <app-movie-overview [movie]="movie"></app-movie-overview>
+    </div>
+</div>

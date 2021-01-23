@@ -78,4 +78,19 @@ describe('MoviesService', () => {
       req.flush(movieDetails);
     })
   })
+
+  describe('getMyMovies',()=>{
+    it('Should return movies from the api with one httpget call',()=>{
+      moviesService.getMyMovies().subscribe(
+        movies =>{
+          expect(movies).not.toBeUndefined();
+        }
+      );
+
+      const req = httpMock.expectOne(`${environment.apiUrl}/myMovies`);
+      expect(req.request.method).toEqual('GET');
+
+      req.flush(movies);
+    })
+  });
 });

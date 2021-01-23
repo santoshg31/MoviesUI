@@ -6,11 +6,12 @@ import { MovieOverviewComponent } from './movie-overview/movie-overview.componen
 import { MovieFilterComponent } from './movie-filter/movie-filter.component';
 import { FormsModule } from '@angular/forms';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { MyMoviesComponent } from './my-movies/my-movies.component';
 
 
 
 @NgModule({
-  declarations: [MoviesComponent, MovieOverviewComponent, MovieFilterComponent, MovieDetailsComponent],
+  declarations: [MoviesComponent, MovieOverviewComponent, MovieFilterComponent, MovieDetailsComponent, MyMoviesComponent],
   imports: [
     CommonModule,
     MovieRoutingModule,
