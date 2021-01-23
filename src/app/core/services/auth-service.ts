@@ -11,13 +11,13 @@ export class AuthService {
     private _user: User;
     private _loginChangedSubject = new Subject<boolean>();
 
-    loginChanged = this._loginChangedSubject.asObservable();   //this will be used to notify for any UI changes for successfull login
+    loginChanged = this._loginChangedSubject.asObservable();   //this will be used to notify for any UI changes for successfull login or if login changes
     constructor() {
         const stsSettings = {
           authority: environment.stsAuthority,
           client_id: environment.clientId,
           redirect_uri: `${environment.clientRoot}signin-callback`,
-          scope: 'openid profile movies-api',
+          scope: 'openid profile projects-api',   //changing this to work accordingly when identity server changes and when I create my own with movies-api
           response_type: 'code',
           post_logout_redirect_uri: `${environment.clientRoot}signout-callback`          
         };
@@ -36,6 +36,14 @@ export class AuthService {
           }
           this._user = user;
           return userCurrent;
+        });
+    }
+
+    completeLogin() {
+        return this._userManager.signinRedirectCallback().then(user => {
+          this._user = user;
+          this._loginChangedSubject.next(!!user && !user.expired);
+          return user;
         });
     }
 }
