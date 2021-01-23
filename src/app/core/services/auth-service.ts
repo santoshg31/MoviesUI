@@ -46,4 +46,16 @@ export class AuthService {
           return user;
         });
     }
+
+    logout() {
+        return this._userManager.signoutRedirect();
+    }
+    
+    completeLogout() {
+        this._user = null;
+        return this._userManager.signoutRedirectCallback();
+    }
+
+
+
 }

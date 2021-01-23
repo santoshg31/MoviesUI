@@ -5,11 +5,12 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { SigninRedirectCallbackComponent } from './login/signin-redirect-callback/signin-redirect-callback.component';
+import { SignoutRedirectCallbackComponent } from './login/signout-redirect-callback/signout-redirect-callback.component';
 
 
 
 @NgModule({
-  declarations: [PageNotFoundComponent, NavBarComponent, SigninRedirectCallbackComponent],
+  declarations: [PageNotFoundComponent, NavBarComponent, SigninRedirectCallbackComponent, SignoutRedirectCallbackComponent],
   exports:[NavBarComponent],
   imports: [
     CommonModule,
