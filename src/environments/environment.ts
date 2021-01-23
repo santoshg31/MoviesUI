@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl:'http://localhost:50944/api/movies'
+  apiUrl:'http://localhost:50944/api/movies',
+  clientRoot:'http://localhost:4200/',
+  stsAuthority:'https://securingangularappscoursev2-sts.azurewebsites.net/', //this is identity server url
+  clientId : 'spa-client'
 };
 
 /*
