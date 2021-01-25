@@ -7,11 +7,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SigninRedirectCallbackComponent } from './login/signin-redirect-callback/signin-redirect-callback.component';
 import { SignoutRedirectCallbackComponent } from './login/signout-redirect-callback/signout-redirect-callback.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 
 
 @NgModule({
-  declarations: [PageNotFoundComponent, NavBarComponent, SigninRedirectCallbackComponent, SignoutRedirectCallbackComponent],
+  declarations: [PageNotFoundComponent, NavBarComponent, SigninRedirectCallbackComponent, SignoutRedirectCallbackComponent, UnauthorizedComponent],
   exports:[NavBarComponent],
   imports: [
     CommonModule,

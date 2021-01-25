@@ -16,7 +16,7 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this._authService.isLoggedIn().then(loggedIn =>{   //this will check if the user navigates to other site and comes back to ensure the user stays logged in provided the token doesn't expire.
-      this.isLoggedIn = this.isLoggedIn;
+      this.isLoggedIn = loggedIn;
     })
   }
 
